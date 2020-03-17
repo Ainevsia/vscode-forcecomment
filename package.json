@@ -10,14 +10,26 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.helloWorld"
+		"onCommand:extension.forcecomment.startForceComment"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "extension.helloWorld",
-				"title": "Hello World"
+				"command": "extension.forcecomment.startForceComment",
+				"title": "ForceComment: Start forcing you to comment"
+			},
+			{
+				"command": "extension.forcecomment.hitComment",
+				"title": "ForceComment: Insert a comment and refresh the timer"
+			}
+		],
+		"keybindings":[
+			{
+				"command": "extension.forcecomment.hitComment",
+				"key": "/",
+				"mac": "/",
+				"when": "editorTextFocus"
 			}
 		]
 	},

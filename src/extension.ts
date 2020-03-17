@@ -13,14 +13,25 @@ export function activate(context: vscode.ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('extension.helloWorld', () => {
+	let disposable = vscode.commands.registerCommand('extension.forcecomment.startForceComment', () => {
 		// The code you place here will be executed every time your command is executed
 
 		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World!');
+		vscode.window.showInformationMessage('Hello World! Please Comment from time to time!');
 	});
 
 	context.subscriptions.push(disposable);
+
+	let hitcomment = vscode.commands.registerCommand('extension.forcecomment.hitComment', () => {
+		let editor = vscode.window.activeTextEditor as vscode.TextEditor;
+		editor.edit(edit => {
+			edit.insert(editor.selection.active, '/');
+		});
+		vscode.window.showInformationMessage('You hit \/!');
+	});
+
+	context.subscriptions.push(hitcomment);
+
 }
 
 // this method is called when your extension is deactivated
