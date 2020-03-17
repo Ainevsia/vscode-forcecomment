@@ -2,6 +2,10 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
+import {LogLevel} from './constants';
+import { Logger } from './logger';
+var logger = new Logger(LogLevel.INFO);
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -35,4 +39,6 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() {
+	logger.info('ForceComment has been disabled!');
+}
