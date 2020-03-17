@@ -24,7 +24,7 @@
 				"title": "ForceComment: Insert a comment and refresh the timer"
 			}
 		],
-		"keybindings":[
+		"keybindings": [
 			{
 				"command": "extension.forcecomment.hitComment",
 				"key": "/",
@@ -53,5 +53,8 @@
 		"mocha": "^7.0.1",
 		"typescript": "^3.7.5",
 		"vscode-test": "^1.3.0"
+	},
+	"dependencies": {
+		"minimist": "^1.2.5"
 	}
 }
