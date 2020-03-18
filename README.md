@@ -26,7 +26,7 @@ This extension contributes the following settings:
 
 ## Known Issues
 
-- whenever change to a new file, it will scream.
+- whenever change to a new file, it will scream. the logic false. bug exits.
 
 ## Release Notes
 

@@ -73,6 +73,7 @@ export class ForceComment {
   }
   private updateHeartbeat(file: string, isWrite: boolean): void {
     this.lastHeartbeat ++;
+    console.log('here' + this.lastHeartbeat);
     if (this.lastHeartbeat >= 100) {
         vscode.window.showInformationMessage('comment!!!!!!!!');
         this.lastHeartbeat = 0;
