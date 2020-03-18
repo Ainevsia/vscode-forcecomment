@@ -5,8 +5,8 @@
 	"version": "0.0.1",
 	"publisher": "ainevsia",
 	"author": {
-        "name": "ainevsia"
-    },
+		"name": "ainevsia"
+	},
 	"engines": {
 		"vscode": "^1.43.0"
 	},
@@ -14,21 +14,21 @@
 		"Other"
 	],
 	"keywords": [
-        "comment"
+		"comment"
 	],
 	"homepage": "https://github.com/Ainevsia/vscode-forcecomment",
 	"bugs": {
-        "url": "https://github.com/Ainevsia/vscode-forcecomment/issues",
-        "email": "zhipengxu@sjtu.edu.com"
+		"url": "https://github.com/Ainevsia/vscode-forcecomment/issues",
+		"email": "zhipengxu@sjtu.edu.com"
 	},
 	"license": "BSD-3-Clause",
 	"activationEvents": [
 		"*"
 	],
 	"repository": {
-        "type": "git",
-        "url": "https://github.com/Ainevsia/vscode-forcecomment.git"
-    },
+		"type": "git",
+		"url": "https://github.com/Ainevsia/vscode-forcecomment.git"
+	},
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
