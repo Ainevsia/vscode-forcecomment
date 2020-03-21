@@ -46,6 +46,7 @@ export class ForceComment {
     this.disposable = vscode.Disposable.from(...subscriptions);
   }
 
+
   private onChange(): void {
     this.onEvent(false);
   }
