@@ -6,7 +6,7 @@ import { BlameViewProvider } from './blameview';
 
 export function activate(context: vscode.ExtensionContext) {
 
-	console.log('Extension start success');
+	console.log('[ForceComment] Extension start success');
 
 	let formatter = new Formatter();
 
