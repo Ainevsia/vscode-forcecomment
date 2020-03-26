@@ -4,6 +4,10 @@ This is the README for the extension "vscode-forcecomment". It can help you to c
 
 ## Usage
 
+### Auto prompt
+
+![propt](images/prompt.gif)
+
 ### Align comment
 
 Command : `Align`
@@ -19,6 +23,10 @@ Keyboard shortcut : `ctrl + shift + /`
 
 ## Release Notes
 
+### v0.0.2
+
+* add blame message to prompt the user for comment
+ 
 ### v0.0.1
 
 - Add a simple tail-comment alignment functionality
