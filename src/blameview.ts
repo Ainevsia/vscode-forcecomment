@@ -4,6 +4,7 @@ import { Tracer } from './tracer'
 
 
 export class BlameViewProvider implements vscode.Disposable {
+    private readonly _max_line_of_block : number = 10;
     private _disposables: vscode.Disposable[] = [];
     private _decoration = vscode.window.createTextEditorDecorationType({
         after: {
@@ -43,7 +44,7 @@ export class BlameViewProvider implements vscode.Disposable {
         }
 
         let contentText = '\u00a0\u00a0\u00a0\u00a0';
-        contentText += this._judge_has_comment(editor) ? "" : "what does this block do?";
+        contentText += this._judge_has_comment(editor);
         const options: vscode.DecorationOptions = {
             range: new vscode.Range(line, Number.MAX_SAFE_INTEGER, line, Number.MAX_SAFE_INTEGER),
             renderOptions: { after: { contentText } }
@@ -55,11 +56,10 @@ export class BlameViewProvider implements vscode.Disposable {
         editor.setDecorations(this._decoration, []);
     }
 
-    private _judge_has_comment(editor: vscode.TextEditor): boolean {
-        let has_comment : boolean = false;
+    private _judge_has_comment(editor: vscode.TextEditor): string {
+        let res : string = '';
         editor.selections.forEach((selection) => {
             if (selection.isSingleLine && editor.document.lineAt(selection.start.line).isEmptyOrWhitespace) {
-                has_comment = true;
                 return; // forEach return
             }
             let start = selection.start.line;
@@ -80,9 +80,15 @@ export class BlameViewProvider implements vscode.Disposable {
             
             let lines: string = editor.document.getText(select_range);
             if (lines.match(reg_2slash) || lines.match(reg_slash_star) || lines.match(reg_star_slash)) {
-                has_comment = true;
+                res = '';
+            } else {
+                if (end - start > this._max_line_of_block) {
+                    res = 'Block of code to large';
+                } else {
+                    res = 'What does this block of code do ?'
+                }
             }
         });
-        return has_comment;
+        return res;
     }
 }
