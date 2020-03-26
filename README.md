@@ -2,41 +2,37 @@
 
 This is the README for the extension "vscode-forcecomment". It can help you to comment from time to time.
 
-## Features
+## Usage
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### Align comment
 
+Command : `Align`
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+Keyboard shortcut : `ctrl + shift + /`
 
-## Requirements
+![comment alignment](images/comment.gif)
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
 
 ## Known Issues
 
-- whenever change to a new file, it will scream. the logic false. bug exits.
+- no one has used it
 
 ## Release Notes
 
-### 0.0.1
+### v0.0.1
 
-Initial release of vscode-forcecomment
+- Add a simple tail-comment alignment functionality
 
 ***
 
+## Changes
+[Change Log](./CHANGELOG.md)
 
-### For more information
+## License
+[BSD 3-Clause License](./LICENSE)
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
+
+## Unofficial Author's Words
+> This is the tool I wanted but could not find so wrote myself.
+> 
+> I hope you will enjoy it!
