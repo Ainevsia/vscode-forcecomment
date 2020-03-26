@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 
 // import { ForceComment } from './forcecomment';
 import Formatter from './formatter';
+import { BlameViewProvider } from './blameview';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -15,7 +16,9 @@ export function activate(context: vscode.ExtensionContext) {
 			formatter.process(editor);
 		})
 	);
+	let blameViewProvider = new BlameViewProvider();
 
+	context.subscriptions.push(blameViewProvider);
 	// let forcecomment = new ForceComment(context.extensionPath);
 	
 	// context.subscriptions.push(vscode.commands.registerCommand('extension.forcecomment.startForceComment', () => {
