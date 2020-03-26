@@ -42,8 +42,8 @@ export class BlameViewProvider implements vscode.Disposable {
             return;
         }
 
-        let contentText = '\u00a0\u00a0\u00a0\u00a0What does this function do ?';
-
+        let contentText = '\u00a0\u00a0\u00a0\u00a0';
+        contentText += this._judge_has_comment(editor) ? "" : "what does this block do?";
         const options: vscode.DecorationOptions = {
             range: new vscode.Range(line, Number.MAX_SAFE_INTEGER, line, Number.MAX_SAFE_INTEGER),
             renderOptions: { after: { contentText } }
@@ -53,5 +53,36 @@ export class BlameViewProvider implements vscode.Disposable {
 
     private _clear(editor: vscode.TextEditor): void {
         editor.setDecorations(this._decoration, []);
+    }
+
+    private _judge_has_comment(editor: vscode.TextEditor): boolean {
+        let has_comment : boolean = false;
+        editor.selections.forEach((selection) => {
+            if (selection.isSingleLine && editor.document.lineAt(selection.start.line).isEmptyOrWhitespace) {
+                has_comment = true;
+                return; // forEach return
+            }
+            let start = selection.start.line;
+            while (start > 0 && !editor.document.lineAt(start).isEmptyOrWhitespace) {
+                start -- ;
+            }
+            let end = selection.end.line;
+            while (end + 1 < editor.document.lineCount && !editor.document.lineAt(end).isEmptyOrWhitespace) {
+                end ++ ;
+            }
+            let reg_2slash : RegExp = /\/\//;
+            let reg_slash_star : RegExp = /\/\*/;
+            let reg_star_slash : RegExp = /\*\//;
+            const select_range : vscode.Range = new vscode.Range(
+                new vscode.Position(start, 0),
+                new vscode.Position(end, editor.document.lineAt(end).text.length)
+            );
+            
+            let lines: string = editor.document.getText(select_range);
+            if (lines.match(reg_2slash) || lines.match(reg_slash_star) || lines.match(reg_star_slash)) {
+                has_comment = true;
+            }
+        });
+        return has_comment;
     }
 }
