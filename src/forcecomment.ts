@@ -1,8 +1,5 @@
 import * as vscode from 'vscode';
 
-import { COMMAND_DASHBOARD, LogLevel } from './constants';
-import { Logger } from './logger';
-
 export class ForceComment {
   private appNames = {
     'Visual Studio Code': 'vscode',
@@ -14,20 +11,18 @@ export class ForceComment {
   private lastFile: string | undefined;
   private lastHeartbeat: number = 0;
   private extensionPath: string;
-  private logger: Logger;
   private fetchTodayInterval: number = 60000;
   private lastFetchToday: number = 0;
 
 
-  constructor(extensionPath: string, logger: Logger) {
+  constructor(extensionPath: string) {
     this.lastHeartbeat = 0;
     this.extensionPath = extensionPath;
-    this.logger = logger;
   }
 
   public initialize(): void {
     
-    this.statusBar.command = COMMAND_DASHBOARD;
+    this.statusBar.command = 'sdf';
 
     this.statusBar.text = '$(clock) ForceComment working...';
     this.statusBar.show();

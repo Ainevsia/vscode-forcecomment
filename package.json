@@ -39,13 +39,17 @@
 			{
 				"command": "extension.forcecomment.hitComment",
 				"title": "ForceComment: Insert a comment and refresh the timer"
+			},
+			{
+				"command": "extension.forcecomment.aligncode",
+				"title": "ForceComment: Align code"
 			}
 		],
 		"keybindings": [
 			{
-				"command": "extension.forcecomment.hitComment",
-				"key": "/",
-				"mac": "/",
+				"command": "extension.forcecomment.aligncode",
+				"key": "ctrl+shift+/",
+				"mac": "ctrl+shift+/",
 				"when": "editorTextFocus"
 			}
 		]
