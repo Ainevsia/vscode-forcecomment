@@ -1,7 +1,7 @@
 {
 	"name": "vscode-forcecomment",
-	"displayName": "ForceComment",
-	"description": "Forcing you to comment from time to time.",
+	"displayName": "Comment & Tomato",
+	"description": "Reminding you to comment from time to time. Also reminding you to for each Tomato!",
 	"version": "0.0.4",
 	"publisher": "ainevsia",
 	"icon": "images/icon.png",
@@ -15,7 +15,7 @@
 		"Other"
 	],
 	"keywords": [
-		"comment"
+		"comment", "tomato clock"
 	],
 	"homepage": "https://github.com/Ainevsia/vscode-forcecomment",
 	"bugs": {
@@ -24,7 +24,9 @@
 	},
 	"license": "BSD-3-Clause",
 	"activationEvents": [
-		"onLanguage:c"
+		"onLanguage:c",
+		"onLanguage:rust",
+		"onLanguage:cpp"
 	],
 	"repository": {
 		"type": "git",
@@ -33,14 +35,6 @@
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
-			{
-				"command": "extension.forcecomment.startForceComment",
-				"title": "ForceComment: Start forcing you to comment"
-			},
-			{
-				"command": "extension.forcecomment.hitComment",
-				"title": "ForceComment: Insert a comment and refresh the timer"
-			},
 			{
 				"command": "extension.forcecomment.aligncode",
 				"title": "ForceComment: Align code"
