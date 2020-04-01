@@ -2,6 +2,9 @@
 
 ## [unreleased]
 
+## v0.0.4
+- can set time now
+
 ## v0.0.3
 - add status bar and the timer for the first time
 

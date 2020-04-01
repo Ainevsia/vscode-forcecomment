@@ -45,8 +45,8 @@
 				"title": "ForceComment: Align code"
 			},
 			{
-				"command": "extension.forcecomment.tomatotime",
-				"title": "ForceComment: Align code"
+				"command": "extension.forcecomment.tomato",
+				"title": "ForceComment: Set time for one tomato"
 			}
 		],
 		"keybindings": [

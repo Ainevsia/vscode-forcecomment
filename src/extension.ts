@@ -8,6 +8,8 @@ import { Timer, TimerState } from "./tomatotime";
 import { Commands, Messages } from "./constants";
 require("moment-duration-format");
 
+import { chooseMinutes } from './basicInput';
+
 export function activate(context: vscode.ExtensionContext) {
 
 	console.log('[ForceComment] Extension start success');
@@ -25,16 +27,38 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// Create a status bar item
     const statusBarItem = vscode.window.createStatusBarItem(
-        vscode.StatusBarAlignment.Left);
-    statusBarItem.tooltip = "Timer";
+		vscode.StatusBarAlignment.Left
+	);
+    statusBarItem.tooltip = "Tomato Timer";
     statusBarItem.command = Commands.TimerAction;
     statusBarItem.show();
 
     // Create a timer model
-    const timer = new Timer(15*60);
+	const timer = new Timer(10);
+	context.subscriptions.push(
+		// reset the tomato timer
+		vscode.commands.registerTextEditorCommand("extension.forcecomment.tomato", async () => {
+			const options: { [key: string]: (timer: Timer) => Promise<void> } = {
+				chooseMinutes,
+				// showInputBox
+			};
+			const quickPick = vscode.window.createQuickPick();
+			quickPick.items = Object.keys(options).map(label => ({ label }));
+			quickPick.onDidChangeSelection(selection => {
+				if (selection[0]) {
+					options[selection[0].label](timer)
+						.catch(console.error);
+				}
+			});
+			quickPick.onDidHide(() => quickPick.dispose());
+			quickPick.show();
+			// timer.setTimer(123)
+		})
+	);
+
     timer.onTimeChanged((args) => {
         // Reflect in the UI every time the remaining time changes
-        statusBarItem.text = '$(squirrel) Tomato : ' + formatSeconds(args.remainingSeconds);
+        statusBarItem.text = '$(squirrel) ' + timer.getTomato +' Tomato : ' + formatSeconds(args.remainingSeconds);
     });
     timer.onTimerEnd(() => {
         // Issue a timer exit message to vscode
@@ -105,11 +129,10 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 function formatSeconds(seconds: number) : string {
-	const duration = moment.duration(seconds, "seconds") as any;
+	const duration : moment.Duration = moment.duration(seconds, "seconds");
 	let res : string = '';
 	res += duration.minutes() + 'm ';
 	res += duration.seconds() + 's';
-	// return duration.format("mm:ss");
 	return res;
 }
 

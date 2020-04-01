@@ -7,10 +7,11 @@ export class Timer {
     private _timerEndEventEmitter = new vscode.EventEmitter<void>();
     private _timerChangedEventEmitter = new vscode.EventEmitter<TimerChangedEventArgs>();
 
-    private _elapsedSeconds: number = 0;
-    private _timerSeconds: number;
-    private _interval: NodeJS.Timer | undefined;
-    private _state: TimerState = TimerState.Stopped;
+    private _elapsedSeconds : number = 0;
+    private _timerSeconds : number;
+    private _interval : NodeJS.Timer | undefined;
+    private _state : TimerState = TimerState.Stopped;
+    private _finishedTomatoCnt : number = -1;
 
     // Default timer time is set to 5 min
     private static _DEFAULT_TIMER_SECONDS = 0.5 * 60;
@@ -39,6 +40,10 @@ export class Timer {
 
     get state(): TimerState {
         return this._state;
+    }
+
+    get getTomato() : number {
+        return this._finishedTomatoCnt;
     }
 
     private clearTimerLoop() {
@@ -91,11 +96,18 @@ export class Timer {
         this.clearTimerLoop();
     }
 
+    reset_without_addcnt() {
+        this._state = TimerState.Stopped;
+        this.clearTimerLoop();
+        this._elapsedSeconds = 0;
+        this.fireTimeChangedEvent(this.remainingSeconds);
+    }
+
     reset() {
         this._state = TimerState.Stopped;
         this.clearTimerLoop();
         this._elapsedSeconds = 0;
-
+        this._finishedTomatoCnt ++ ;
         this.fireTimeChangedEvent(this.remainingSeconds);
     }
 
