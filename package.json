@@ -24,7 +24,7 @@
 	},
 	"license": "BSD-3-Clause",
 	"activationEvents": [
-		"*"
+		"onLanguage:c"
 	],
 	"repository": {
 		"type": "git",
