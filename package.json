@@ -2,8 +2,9 @@
 	"name": "vscode-forcecomment",
 	"displayName": "ForceComment",
 	"description": "Forcing you to comment from time to time.",
-	"version": "0.0.1",
+	"version": "0.0.4",
 	"publisher": "ainevsia",
+	"icon": "images/icon.png",
 	"author": {
 		"name": "ainevsia"
 	},
