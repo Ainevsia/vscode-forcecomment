@@ -80,13 +80,13 @@ export class BlameViewProvider implements vscode.Disposable {
             let lines: string = editor.document.getText(select_range);
             if (lines.match(reg_2slash) || lines.match(reg_slash_star) || lines.match(reg_star_slash)) {
                 if (end - start > this._max_line_of_block) {
-                    res = 'Block of code to large';
+                    res = 'Code block too long';
                 } else {
                     res = '';
                 }
             } else {
                 if (end - start > this._max_line_of_block) {
-                    res = 'Block of code to large';
+                    res = 'Code block too long';
                 } else {
                     res = 'What does this block of code do ?';
                 }
