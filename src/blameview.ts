@@ -2,7 +2,6 @@ import * as vscode from 'vscode';
 
 import { Tracer } from './tracer'
 
-
 export class BlameViewProvider implements vscode.Disposable {
     private readonly _max_line_of_block : number = 10;
     private _disposables: vscode.Disposable[] = [];

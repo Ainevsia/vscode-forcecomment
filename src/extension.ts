@@ -1,42 +1,112 @@
 import * as vscode from 'vscode';
 
-// import { ForceComment } from './forcecomment';
 import Formatter from './formatter';
 import { BlameViewProvider } from './blameview';
+
+import * as moment from "moment";
+import { Timer, TimerState } from "./tomatotime";
+import { Commands, Messages } from "./constants";
+require("moment-duration-format");
 
 export function activate(context: vscode.ExtensionContext) {
 
 	console.log('[ForceComment] Extension start success');
 
 	let formatter = new Formatter();
-
 	context.subscriptions.push(
 		// the format function
 		vscode.commands.registerTextEditorCommand("extension.forcecomment.aligncode", (editor) => {
 			formatter.process(editor);
 		})
 	);
+
 	let blameViewProvider = new BlameViewProvider();
-
 	context.subscriptions.push(blameViewProvider);
-	// let forcecomment = new ForceComment(context.extensionPath);
-	
-	// context.subscriptions.push(vscode.commands.registerCommand('extension.forcecomment.startForceComment', () => {
-	// 	vscode.window.showWarningMessage(' Please Comment from time to time!', 'sd', 'sd');
-	// }));
 
-	// let hitcomment = vscode.commands.registerCommand('extension.forcecomment.hitComment', () => {
-	// 	let editor = vscode.window.activeTextEditor as vscode.TextEditor;
-	// 	editor.edit(edit => {
-	// 		edit.insert(editor.selection.active, '/');
-	// 	});
-	// 	forcecomment.clearHeartbeat();
-	// 	// vscode.window.showInformationMessage('You hit \/!');
-	// });
+	// Create a status bar item
+    const statusBarItem = vscode.window.createStatusBarItem(
+        vscode.StatusBarAlignment.Left);
+    statusBarItem.tooltip = "Timer";
+    statusBarItem.command = Commands.TimerAction;
+    statusBarItem.show();
 
-	// context.subscriptions.push(hitcomment);
-	// context.subscriptions.push(forcecomment);
-	// forcecomment.initialize();
+    // Create a timer model
+    const timer = new Timer();
+    timer.onTimeChanged((args) => {
+        // Reflect in the UI every time the remaining time changes
+        statusBarItem.text = formatSeconds(args.remainingSeconds);
+    });
+    timer.onTimerEnd(() => {
+        // Issue a timer exit message to vscode
+        vscode.window.showInformationMessage("Timer end");
+    });
+    timer.onTimerChanged(({ timerSeconds }) => {
+        // Save timer time changes
+        context.globalState.update("vscode-timer.timer", timerSeconds);
+    });
+
+    context.subscriptions.push(statusBarItem);
+
+
+    // Commands: TimerAction
+    context.subscriptions.push(
+        vscode.commands.registerCommand(Commands.TimerAction, () => {
+            switch (timer.state) {
+                case TimerState.Running:
+                    timer.pause();
+                    break;
+                case TimerState.Paused:
+                    timer.start();
+                    break;
+                case TimerState.Stopped:
+                    timer.start();
+                    break;
+            }
+		})
+	);
+
+    // Commands: Reset
+    context.subscriptions.push(
+        vscode.commands.registerCommand(Commands.Reset, () => {
+            timer.reset();
+		})
+	);
+
+    // Commands: Set timer
+    context.subscriptions.push(
+        vscode.commands.registerCommand(Commands.SetTimer, () => {
+            if (timer.state == TimerState.Running) {
+                // If the timer is running
+                // Cancel the running timer to see if you want to set a new timer
+                vscode.window.showQuickPick(["OK", "Cancel"], { placeHolder: Messages.ContinueTimerSet })
+                    .then(selection => {
+                        if (selection === "OK") {
+                            showInputBox();
+                        }
+                    });
+            } else {
+                showInputBox();
+            }
+
+            function showInputBox() {
+                vscode.window.showInputBox({ placeHolder: Messages.SetTimer })
+                    .then(input => {
+                        const seconds = moment.duration(input).asSeconds();
+                        if (seconds <= 0) {
+                            vscode.window.showErrorMessage(Messages.InvalidTimerDuration);
+                            return;
+                        }
+
+                        timer.reset();
+                        timer.setTimer(seconds);
+                    });
+            }
+        }));
+}
+
+function formatSeconds(seconds: number) {
+    const duration = moment.duration(seconds, "seconds") as any;
+    return duration.format("mm:ss");
 }
 
 // this method is called when your extension is deactivated

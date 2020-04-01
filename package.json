@@ -43,6 +43,10 @@
 			{
 				"command": "extension.forcecomment.aligncode",
 				"title": "ForceComment: Align code"
+			},
+			{
+				"command": "extension.forcecomment.tomatotime",
+				"title": "ForceComment: Align code"
 			}
 		],
 		"keybindings": [
@@ -55,14 +59,14 @@
 		],
 		"colors": [
 			{
-                "id": "forcecomment.blameView.info",
-                "description": "The color of blame info at the end of each line.",
-                "defaults": {
-                    "light": "#237893",
-                    "dark": "#858585",
-                    "highContrast": "#858585"
-                }
-            }
+				"id": "forcecomment.blameView.info",
+				"description": "The color of blame info at the end of each line.",
+				"defaults": {
+					"light": "#237893",
+					"dark": "#858585",
+					"highContrast": "#858585"
+				}
+			}
 		]
 	},
 	"scripts": {
@@ -87,6 +91,8 @@
 		"vscode-test": "^1.3.0"
 	},
 	"dependencies": {
-		"minimist": "^1.2.5"
+		"minimist": "^1.2.5",
+		"moment": "^2.17.1",
+		"moment-duration-format": "^1.3.0"
 	}
 }
