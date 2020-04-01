@@ -31,14 +31,14 @@ export function activate(context: vscode.ExtensionContext) {
     statusBarItem.show();
 
     // Create a timer model
-    const timer = new Timer();
+    const timer = new Timer(15*60);
     timer.onTimeChanged((args) => {
         // Reflect in the UI every time the remaining time changes
-        statusBarItem.text = formatSeconds(args.remainingSeconds);
+        statusBarItem.text = '$(squirrel) Tomato : ' + formatSeconds(args.remainingSeconds);
     });
     timer.onTimerEnd(() => {
         // Issue a timer exit message to vscode
-        vscode.window.showInformationMessage("Timer end");
+        vscode.window.showInformationMessage("One Tomato end! Have a break please...", "OK");
     });
     timer.onTimerChanged(({ timerSeconds }) => {
         // Save timer time changes
@@ -104,9 +104,13 @@ export function activate(context: vscode.ExtensionContext) {
         }));
 }
 
-function formatSeconds(seconds: number) {
-    const duration = moment.duration(seconds, "seconds") as any;
-    return duration.format("mm:ss");
+function formatSeconds(seconds: number) : string {
+	const duration = moment.duration(seconds, "seconds") as any;
+	let res : string = '';
+	res += duration.minutes() + 'm ';
+	res += duration.seconds() + 's';
+	// return duration.format("mm:ss");
+	return res;
 }
 
 // this method is called when your extension is deactivated
