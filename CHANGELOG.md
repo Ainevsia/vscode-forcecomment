@@ -1,6 +1,7 @@
 # Change Log
 
-## [unreleased]
+## v0.0.5
+* fix a bug: if not turn on auto-save, the blame view will not change. (Great Thanks to cyy).
 
 ## v0.0.4
 - can set time now

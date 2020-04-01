@@ -2,7 +2,7 @@
 	"name": "vscode-forcecomment",
 	"displayName": "Comment & Tomato",
 	"description": "Reminding you to comment from time to time. Also reminding you to for each Tomato!",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"publisher": "ainevsia",
 	"icon": "images/icon.png",
 	"author": {
@@ -15,7 +15,8 @@
 		"Other"
 	],
 	"keywords": [
-		"comment", "tomato clock"
+		"comment",
+		"tomato clock"
 	],
 	"homepage": "https://github.com/Ainevsia/vscode-forcecomment",
 	"bugs": {

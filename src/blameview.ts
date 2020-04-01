@@ -36,11 +36,11 @@ export class BlameViewProvider implements vscode.Disposable {
         const file = editor.document.uri;
         const line = editor.selection.active.line;
         Tracer.verbose(`Try to update blame. ${file.fsPath}: ${line}`);
-        if (file !== editor.document.uri || line != editor.selection.active.line || editor.document.isDirty) {
-            // git blame could take long time and the active line has changed
-            Tracer.info(`This update is outdated. ${file.fsPath}: ${line}, dirty ${editor.document.isDirty}`);
-            return;
-        }
+        // if (file !== editor.document.uri || line != editor.selection.active.line || editor.document.isDirty) {
+        //     // git blame could take long time and the active line has changed
+        //     Tracer.info(`This update is outdated. ${file.fsPath}: ${line}, dirty ${editor.document.isDirty}`);
+        //     return;
+        // }
 
         let contentText = '\u00a0\u00a0\u00a0\u00a0';
         contentText += this._judge_has_comment(editor);

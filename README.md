@@ -32,6 +32,9 @@ Command : `ForceComment: Set time for one tomato`
 
 ## Release Notes
 
+## v0.0.5
+* fix a bug: if not turn on auto-save, the blame view will not change. (Great Thanks to cyy).
+
 ### v0.0.4
 
 - add status bar for the tomato clock and can set time
