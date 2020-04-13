@@ -2,6 +2,12 @@
 
 This is the README for the extension "vscode-forcecomment". It can help you to comment from time to time. It can also remind you of each tomato!
 
+## How to get this extionsion
+
+You can find it in the Vscode extionsion market [Here](https://marketplace.visualstudio.com/items?itemName=Ainevsia.vscode-forcecomment).
+
+Or you can search the keyword `vscode-forcecomment` in the vscode extension marketplace directly.
+
 ## Usage
 
 ### Auto detect uncomment large blocks of codes
