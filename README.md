@@ -50,6 +50,11 @@ Curruently only actived on `C/C++/Rust` codes.
 
 ## Release Notes
 
+## v0.0.6
+
+- Do dead-code removal and Specify that this extension can only used for C/C++/Rust in Readme.
+- Prepare for a release.
+
 ## v0.0.5
 * fix a bug: if not turn on auto-save, the blame view will not change. (Great Thanks to cyy).
 
