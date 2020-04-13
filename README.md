@@ -1,6 +1,6 @@
 # vscode-forcecomment README
 
-This is the README for the extension "vscode-forcecomment". It can help you to comment from time to time.
+This is the README for the extension "vscode-forcecomment". It can help you to comment from time to time. It can also remind you of each tomato!
 
 ## Usage
 
@@ -26,9 +26,27 @@ Command : `ForceComment: Set time for one tomato`
 
 ![set-tomato-time](images/changetomato.gif)
 
+## Imported Commands
+
+| Command                            | Title                                 | Description     |
+| ---------------------------------- | ------------------------------------- | --------------- |
+| `extension.forcecomment.aligncode` | ForceComment: Align code              | Align tail code |
+| `extension.forcecomment.tomato`    | ForceComment: Set time for one tomato | Set a new timer |
+
+## Activation Situations
+
+Curruently only actived on `C/C++/Rust` codes.
+
 ## Known Issues
 
 - no one has used it
+
+## How to develop
+
+- Clone the repository.
+- In the repository, run `npm install`
+- Open the repository using `Vscode` and then press `F5`
+- Now you are debugging the extension!
 
 ## Release Notes
 
