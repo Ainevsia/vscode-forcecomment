@@ -2,11 +2,11 @@
 	"name": "vscode-forcecomment",
 	"displayName": "Comment & Tomato",
 	"description": "Reminding you to comment from time to time. Also reminding you to for each Tomato!",
-	"version": "0.0.5",
-	"publisher": "ainevsia",
+	"version": "0.0.6",
+	"publisher": "Ainevsia",
 	"icon": "images/icon.png",
 	"author": {
-		"name": "ainevsia"
+		"name": "Ainevsia"
 	},
 	"engines": {
 		"vscode": "^1.43.0"
